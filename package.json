@@ -20,7 +20,8 @@
     "body-parser": "^1.13.2",
     "ejs": "^2.3.2",
     "express": "^4.13.1",
-    "imagemagick": "^0.1.3"
+    "imagemagick": "^0.1.3",
+    "multer": "^0.1.8"
   },
   "devDependencies": {
     "morgan": "^1.6.1"
