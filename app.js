@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 
-app.get('/', funciton(req, res){
+app.get('/', function(req, res){
   res.render('index');
 })
 
