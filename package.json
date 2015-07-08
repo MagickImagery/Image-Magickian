@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/MagickImagery/Image-Magickian",
   "dependencies": {
+    "body-parser": "^1.13.2",
     "ejs": "^2.3.2",
     "express": "^4.13.1",
     "imagemagick": "^0.1.3"
