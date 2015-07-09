@@ -9,7 +9,7 @@ app.use(express.static('public'));
 app.use(multer({
 	dest: './uploads/', 
 	onFileUploadComplete: function(file, req, res){
-		res.render('cropper', {img_url: file.name} )
+		// res.render('cropper', {img_url: file.name} )
 		console.log(file)
 	}
 }));
@@ -31,8 +31,9 @@ app.get('/', function(req, res){
 })
 
 
-app.post('/crop', function(req, res){
-	
+app.post('/uploads', function(req, res){
+	console.log(req.files)
 })
+
 
 app.listen(port);
