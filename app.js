@@ -1,6 +1,7 @@
 var express = require('express');
 var morgan  = require('morgan');
 var app     = express();
+var im 			= require('imagemagick')
 var multer 	= require('multer');
 var port    = 3000;
 
@@ -35,5 +36,14 @@ app.post('/uploads', function(req, res){
 	console.log(req.files)
 })
 
-
+app.post('/', function(req, res){
+	im.resize(
+			{
+  			srcPath: "/uploads/"+req.body.image,
+  			dstPath: "/uploads/"+req.body.image,
+  			width: 0,
+  			height: 0,
+			}
+		)
+})
 app.listen(port);
