@@ -11,7 +11,8 @@ app.use(multer({
 	onFileUploadComplete: function(file, req, res){
 		res.render('cropper', {img_url: file.name} )
 		console.log(file)
-	}}))
+	}
+}));
 
 
 app.use(express.static('uploads'));
