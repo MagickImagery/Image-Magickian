@@ -9,10 +9,17 @@
   <script src="/jcrop/js/Jcrop.js"></script>
 </head>
 <body>
-  <form id="upload-form" action="/crop" method="POST" enctype="multipart/form-data">
+	<div id="uploaded-pic">
+		<img src="8a34011190cdb6c89742a58a4ef02d09.jpg" id="jcrop-this">
+	</div>
+	<button id="crop">Crop</button>
+	<button class="resize" data-size="large">Resize: Large</button>
+	<button class="resize" data-size="medium">Resize: Medium</button>
+	<button class="resize" data-size="small">Resize: Small</button>
+  <form id="upload-form" enctype="multipart/form-data">
     <label for="file">Upload Pic</label>
     <input id="file" type="file" name="image" accept="image/*">
-    <input type="submit">
+    <input type="button" value="Upload">
   </form>
   <script src="/script/main.js"></script>
 </body>

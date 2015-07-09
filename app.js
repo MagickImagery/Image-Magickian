@@ -3,15 +3,16 @@ var morgan  = require('morgan');
 var app     = express();
 var im 			= require('imagemagick')
 var multer 	= require('multer');
+var im			= require('imagemagick');
 var port    = 3000;
 
 app.use(morgan('combined'));
 app.use(express.static('public'));
 app.use(multer({
-	dest: './uploads/', 
-	onFileUploadComplete: function(file, req, res){
-		// res.render('cropper', {img_url: file.name} )
-		console.log(file)
+	dest: './uploads/',
+	onFileUploadComplete: function(file, req, res) {
+		console.log(file);
+		res.json(file);
 	}
 }));
 
@@ -33,7 +34,6 @@ app.get('/', function(req, res){
 
 
 app.post('/uploads', function(req, res){
-	console.log(req.files)
 })
 
 app.post('/', function(req, res){
