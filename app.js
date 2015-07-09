@@ -2,6 +2,7 @@ var express = require('express');
 var morgan  = require('morgan');
 var app     = express();
 var multer 	= require('multer');
+var im			= require('imagemagick');
 var port    = 3000;
 
 app.use(morgan('combined'));

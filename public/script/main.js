@@ -1,12 +1,28 @@
 $(document).ready(function() {
 
-	// $('#jcrop-this').Jcrop({
-	// 	trackDocument: true
-	// });
-
 	var jcropOptions = {
-		trackDocument: true
+		trackDocument: true,
+		onSelect: function(c) {
+			console.log(c);
+		}
 	}
+
+	var imageName;
+
+	$('#jcrop-this').Jcrop(jcropOptions);
+
+	$('button.resize').on('click', function(e) {
+		$.ajax({
+			url: '/resize',
+			type: 'POST',
+			data: {
+				size: e.target.dataset.size,
+				image: imageName
+			}
+		}).done(function(data) {
+			console.log(data);
+		})
+	})
 
 	$(':button').click(function(){
     var formData = new FormData($('form')[0]);
@@ -20,16 +36,14 @@ $(document).ready(function() {
       contentType: false,
       processData: false
     }).done(function(data) {
-      	console.log(data.name);
       	var imageFile = data;
-
       	var $imgTag = $('<img>');
       	$imgTag.attr({
       		src: imageFile.name,
       		id: "jcrop-this"
       	}).appendTo("#uploaded-pic");
       	$imgTag.Jcrop(jcropOptions);
-      	console.log($imgTag);
+      	imageName = imageFile.name;
       });
 	});
 });
