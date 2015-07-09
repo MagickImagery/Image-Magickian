@@ -36,14 +36,23 @@ app.get('/', function(req, res){
 app.post('/uploads', function(req, res){
 })
 
-app.post('/', function(req, res){
-	im.resize(
-			{
-  			srcPath: "/uploads/"+req.body.image,
-  			dstPath: "/uploads/"+req.body.image,
-  			width: 0,
-  			height: 0,
-			}
-		)
+app.post('/resize', function(req, res){
+	
+
+	var path = "./uploads/"+req.body.image;
+
+	if (req.body.size === 'small'){
+		var size = 200;
+	}
+	else if (req.body.size === 'medium') {
+		var size = 400;
+	}
+	else {
+		var size = 600;
+	}
+	im.convert([path, '-resize', size+'x'+size, path ], function(err, stdout){
+		console.log(err)
+		res.json({stdout: stdout, image: req.body.image })
+	})
 })
 app.listen(port);

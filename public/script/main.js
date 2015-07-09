@@ -9,9 +9,10 @@ $(document).ready(function() {
 
 	var imageName;
 
-	$('#jcrop-this').Jcrop(jcropOptions);
+	// $('#jcrop-this').Jcrop(jcropOptions);
 
 	$('button.resize').on('click', function(e) {
+		e.preventDefault();
 		$.ajax({
 			url: '/resize',
 			type: 'POST',
@@ -20,11 +21,13 @@ $(document).ready(function() {
 				image: imageName
 			}
 		}).done(function(data) {
-			console.log(data);
+			console.log(data)
+			$('#uploaded-pic').html()
+			$('#uploaded-pic').html('<img id="jcrop-this" src="/'+data.image+'">');
 		})
 	})
 
-	$(':button').click(function(){
+	$('input[type="button"]').click(function(){
     var formData = new FormData($('form')[0]);
     $.ajax({
       url: '/uploads',  //Server script to process data
@@ -46,4 +49,4 @@ $(document).ready(function() {
       	imageName = imageFile.name;
       });
 	});
-});
+})
