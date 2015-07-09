@@ -1,4 +1,4 @@
-#Image Magickian
+#Image Magick
 
 Be your own Image Magickian! This single page app demonstrates ImageMagick's in-browser and command-line tool to create and manipulate images in countless ways, such as cropping, resizing, transforming, color adjustments, and adding text or drawings to images. It can also perform some advanced wizardry like creating GIF animations.
 
