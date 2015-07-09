@@ -29,6 +29,7 @@ app.get('/', function(req, res){
   res.render('index');
 })
 
+
 app.post('/crop', function(req, res){
 	
 })
