@@ -3,13 +3,13 @@
 Be your own Image Magickian! This single page app demonstrates ImageMagick's in-browser and command-line tool to create and manipulate images in countless ways, such as cropping, resizing, transforming, color adjustments, and adding text or drawings to images. It can also perform some advanced wizardry like creating GIF animations.
 
 ##How to use this app##
-1) Install ImageMagick CLI tools:     
+1) To use ImageMagick in your terminal, install ImageMagick CLI tools:     
 > brew install imagemagick  
 
-2) Install the module using npm:  
+2) To use ImageMagick in your app, install the module using npm:  
 > npm install imagemagick  
 
-3) To use the jCrop jQuery plug-in to crop images. Add these to the HTML file (after downloading files from [here](http://deepliquid.com/content/Jcrop_Download.html):  
+3) To use the jCrop jQuery plug-in to crop images, add these to the HTML file (after downloading files from [here](http://deepliquid.com/content/Jcrop_Download.html).  
 > <link rel="stylesheet" href="/jcrop/css/Jcrop.css">   
 > <script src="/jcrop/js/Jcrop.js"></script>
 
