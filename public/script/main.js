@@ -33,7 +33,7 @@ $(document).ready(function() {
         src: data.image,
         id: "jcrop-this"
       }).appendTo("#uploaded-pic");
-      $imgTag.jcropOptions;
+      $imgTag.Jcrop(jcropOptions);
     });
   });
 
