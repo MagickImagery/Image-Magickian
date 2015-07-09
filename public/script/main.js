@@ -15,6 +15,27 @@ $(document).ready(function() {
 	var imageName;
 
 	// $('#jcrop-this').Jcrop(jcropOptions);
+  $('button.crop').on('click', function(e) {
+    e.preventDefault();
+    console.log("Croppah Contents: ", croptions)
+    $.ajax({
+      url: '/crop',
+      type: 'POST',
+      data:{
+        croptions: croptions,
+        image: imageName
+      }
+    }).done(function(data){
+      imageName = data.image;
+      $("#uploaded-pic").empty();
+      var $imgTag = $('<img>');
+      $imgTag.attr({
+        src: data.image,
+        id: "jcrop-this"
+      }).appendTo("#uploaded-pic");
+      $imgTag.jcropOptions;
+    });
+  });
 
  	// resize buttons
 	$('button.resize').on('click', function(e) {
@@ -40,6 +61,8 @@ $(document).ready(function() {
     	$imgTag.Jcrop(jcropOptions);
 		});
 	});
+
+
 
 	// uploading a new pic
 	$('input[type="button"]').click(function(){

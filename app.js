@@ -50,11 +50,9 @@ app.post('/resize', function(req, res){
 	// handler for different resize buttons
 	if (req.body.size === 'small'){
 		var size = 200;
-	}
-	else if (req.body.size === 'medium') {
+	}else if (req.body.size === 'medium') {
 		var size = 400;
-	}
-	else {
+	}else {
 		var size = 600;
 	}
 	// this is the magicK VVVV
@@ -63,9 +61,22 @@ app.post('/resize', function(req, res){
 		console.log(err)
 		res.json({stdout: stdout, image: updatedFileName})
 	})
+});
 
-	app.post('/crop', function(req, res) { 
-		// req will have some attributes once the client side handler is written
+app.post('/crop', function(req, res) { 
+	// req will have some attributes once the client side handler is written
+	var srcPath = "./uploads/"+req.body.image;
+	var updatedFileName = "crop_" + req.body.image;
+	var destPath = "./uploads/" + updatedFileName;
+
+	var width = req.body.croptions.w
+	var height = req.body.croptions.h
+	var x = req.body.croptions.x
+	var y = req.body.croptions.y
+	im.convert([srcPath, '-crop', width+'x'+height+'+'+x+'+'+y, destPath], function(err, stdout){
+		console.log(err)
+		res.json({stdout: stdout, image: updatedFileName})
 	})
-})
+});
+
 app.listen(port);
