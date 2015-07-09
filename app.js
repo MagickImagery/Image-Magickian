@@ -6,7 +6,15 @@ var port    = 3000;
 
 app.use(morgan('combined'));
 app.use(express.static('public'));
-app.use(multer({dest: './uploads/'}))
+app.use(multer({
+	dest: './uploads/', 
+	onFileUploadComplete: function(file, req, res){
+		res.render('cropper', {img_url: file.name} )
+		console.log(file)
+	}}))
+
+
+app.use(express.static('uploads'));
 app.use(express.static('bower_components'));
 app.set('view engine', 'ejs');
 
@@ -22,7 +30,7 @@ app.get('/', function(req, res){
 })
 
 app.post('/crop', function(req, res){
-	console.log(req.files)
+	
 })
 
 app.listen(port);
