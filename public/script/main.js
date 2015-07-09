@@ -1,18 +1,25 @@
 $(document).ready(function() {
 
+	var croptions;
+
 	var jcropOptions = {
 		trackDocument: true,
 		onSelect: function(c) {
+			// logs the dimensions when the select box is changed
+			croptions = c;
 			console.log(c);
 		}
 	}
 
+	// simple way to keep track of current file name
 	var imageName;
 
 	// $('#jcrop-this').Jcrop(jcropOptions);
 
+ 	// resize buttons
 	$('button.resize').on('click', function(e) {
 		e.preventDefault();
+		// sends the pic file name to the server and the server resizes
 		$.ajax({
 			url: '/resize',
 			type: 'POST',
@@ -21,12 +28,20 @@ $(document).ready(function() {
 				image: imageName
 			}
 		}).done(function(data) {
-			console.log(data)
-			$('#uploaded-pic').html()
-			$('#uploaded-pic').html('<img id="jcrop-this" src="/'+data.image+'">');
-		})
-	})
+			// clears out the div containing the old uploaded pic
+			imageName = data.image;
+			$("#uploaded-pic").empty();
+			// then makes a new img tag to refresh the div/element/whatever
+			var $imgTag = $('<img>');
+    	$imgTag.attr({
+    		src: data.image,
+    		id: "jcrop-this"
+    	}).appendTo("#uploaded-pic");
+    	$imgTag.Jcrop(jcropOptions);
+		});
+	});
 
+	// uploading a new pic
 	$('input[type="button"]').click(function(){
     var formData = new FormData($('form')[0]);
     $.ajax({

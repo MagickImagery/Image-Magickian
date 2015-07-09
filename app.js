@@ -39,8 +39,15 @@ app.post('/uploads', function(req, res){
 app.post('/resize', function(req, res){
 	
 
-	var path = "./uploads/"+req.body.image;
+	var srcPath = "./uploads/"+req.body.image;
 
+	// updates the filename so when it gets pushed back down
+	// the browser knows to refresh the cache
+	var updatedFileName = "resize_" + req.body.image;
+	// saves to the same folder
+	var destPath = "./uploads/" + updatedFileName;
+
+	// handler for different resize buttons
 	if (req.body.size === 'small'){
 		var size = 200;
 	}
@@ -50,9 +57,15 @@ app.post('/resize', function(req, res){
 	else {
 		var size = 600;
 	}
-	im.convert([path, '-resize', size+'x'+size, path ], function(err, stdout){
+	// this is the magicK VVVV
+	im.convert([srcPath, '-resize', size+'x'+size, destPath], function(err, stdout){
+		// ^^^^ the magick is over
 		console.log(err)
-		res.json({stdout: stdout, image: req.body.image })
+		res.json({stdout: stdout, image: updatedFileName})
+	})
+
+	app.post('/crop', function(req, res) { 
+		// req will have some attributes once the client side handler is written
 	})
 })
 app.listen(port);
